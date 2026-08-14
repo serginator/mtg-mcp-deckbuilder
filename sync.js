@@ -130,9 +130,6 @@ export async function syncData({ force = false, dbPath = DB_PATH } = {}) {
       }
       stats.tags = ingestTags(tmp, tags);
     }
-    const now = new Date().toISOString();
-    tmp.prepare(`INSERT OR REPLACE INTO meta (key, value) VALUES ('synced_at', ?)`)
-      .run(now);
     tmp.prepare(`INSERT OR REPLACE INTO meta (key, value) VALUES ('bulk_updated_at', ?)`)
       .run(cardsFile.updated_at);
     tmp.close();

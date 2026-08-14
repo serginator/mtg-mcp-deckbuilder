@@ -101,8 +101,12 @@ export async function scryfallSearch(query, limit = 25) {
     url.searchParams.set('q', query);
     const body = await getJson(url);
     return (body.data ?? []).slice(0, limit).map((c) => ({
-      name: c.name, mana_cost: c.mana_cost, cmc: c.cmc, type_line: c.type_line,
-      oracle_text: c.oracle_text, color_identity: c.color_identity,
+      name: c.name,
+      mana_cost: c.mana_cost ?? c.card_faces?.[0]?.mana_cost,
+      cmc: c.cmc,
+      type_line: c.type_line,
+      oracle_text: c.oracle_text ?? c.card_faces?.map((f) => f.oracle_text).join('\n//\n'),
+      color_identity: c.color_identity,
       legalities: c.legalities,
     }));
   } catch (e) {
