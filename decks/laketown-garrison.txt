@@ -1,0 +1,30 @@
+// Lake-town Garrison
+// 60 cards | Standard legal | W/U Draw-matters + Recruit
+
+// Creatures (18)
+4 Elvenking's Harper
+2 Master's Councillors
+2 Bard the Bowman
+2 Patient Instructor
+2 Lake-town Toymaker
+2 Ravenhill Flock
+2 Gandalf, Wandering Wizard
+2 Esgaroth Garrison
+
+// Artifacts & Equipment (2)
+2 Well-Worn Spatula
+
+// Spells & Enchantments (18)
+2 Plunder the Trollshaws
+3 Eagle's Rescue
+2 Enchanted River's Grasp
+2 Confusticate and Bebother
+3 Uneasy Partings
+2 Celebrate the Mountain-king
+3 Magnificent End
+1 Thorin's Last Stand
+
+// Lands (22)
+9 Plains
+12 Island
+1 Lake-town
