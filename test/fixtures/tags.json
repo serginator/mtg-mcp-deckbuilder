@@ -1,0 +1,8 @@
+[
+  { "id": "t1", "slug": "removal", "label": "Removal", "type": "oracle",
+    "taggings": [{ "oracle_id": "o-bolt", "weight": "very_strong" }] },
+  { "id": "t2", "slug": "card-draw", "label": "Card Draw", "type": "oracle",
+    "taggings": [{ "oracle_id": "o-precious", "weight": "median" }] },
+  { "id": "t3", "slug": "parent-tag", "label": "Parent", "type": "oracle",
+    "taggings": [] }
+]
