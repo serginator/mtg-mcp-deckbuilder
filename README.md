@@ -1,5 +1,7 @@
 # mtg-mcp-deckbuilder
 
+→ [Generated Decks](GENERATED_DECKS.md)
+
 An MCP server for building Magic: The Gathering decks from a collection you own.
 
 Card data comes from Scryfall's bulk export, stored locally in SQLite via Node.js's built-in `node:sqlite` — no ORM, no external database process. The server serves data and enforces format rules; Claude reads the collection and builds the deck.

@@ -1,0 +1,32 @@
+// Goblin-town Rising
+// 60 cards | Standard legal
+
+// Creatures (21)
+2 Nighthowl Pursuer
+1 Front Porch Sentries
+3 Goblin-town Flunkies
+1 Gollum, Riddle Master
+4 Óin the Brave
+1 Stony-Voiced Goblins
+1 The Great Goblin
+4 Dori, Bearer of Friends
+2 Dreaded Bat-Cloud
+1 Smaug the Magnificent
+1 Smaug, Wicked Worm
+
+// Artifacts & Equipment (7)
+3 Giant's Boulder
+2 Goblin Plate Mail
+2 Crude Bent Blade
+
+// Spells & Sagas (10)
+2 Tidings of War
+2 Pinecone Strike
+3 Bilbo's Deadly Slice
+1 The Misty Mountains Cold
+2 Burn, Burn, Tree and Fern
+
+// Lands (22)
+12 Mountain
+8 Swamp
+2 Goblin-town
