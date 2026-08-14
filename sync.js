@@ -60,6 +60,8 @@ export async function ingestCards(db, lines) {
         if (c) cards += insCard.run(c).changes;
       }
     }
+    db.prepare(`INSERT OR REPLACE INTO meta (key, value) VALUES ('synced_at', ?)`)
+      .run(new Date().toISOString());
     db.exec('COMMIT');
   } catch (e) {
     db.exec('ROLLBACK');
