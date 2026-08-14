@@ -124,11 +124,11 @@ export async function syncData({ force = false, dbPath = DB_PATH } = {}) {
   try {
     stats = await ingestCards(tmp, gzipLines(cardsFile.jsonl_download_uri));
     if (tagsFile) {
-      const res = await fetch(tagsFile.jsonl_download_uri, { headers: UA });
-      const raw = Readable.fromWeb(res.body).pipe(createGunzip());
-      let buf = '';
-      for await (const chunk of raw) buf += chunk;
-      stats.tags = ingestTags(tmp, JSON.parse(buf));
+      const tags = [];
+      for await (const line of gzipLines(tagsFile.jsonl_download_uri)) {
+        try { tags.push(JSON.parse(line)); } catch { /* skip malformed lines */ }
+      }
+      stats.tags = ingestTags(tmp, tags);
     }
     const now = new Date().toISOString();
     tmp.prepare(`INSERT OR REPLACE INTO meta (key, value) VALUES ('synced_at', ?)`)
