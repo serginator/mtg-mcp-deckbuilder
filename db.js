@@ -80,3 +80,51 @@ export function openDb(path = DB_PATH) {
   applySchema(db);
   return db;
 }
+
+// Multi-face cards (adventure, transform, modal_dfc, split) put oracle_text —
+// and sometimes mana_cost — only on the faces. Join them so a single column
+// holds everything the card does.
+function faceJoin(card, field) {
+  if (card[field] != null && card[field] !== '') return card[field];
+  const faces = card.card_faces ?? [];
+  const parts = faces.map((f) => f[field]).filter((v) => v != null && v !== '');
+  if (parts.length === 0) return null;
+  return field === 'oracle_text' ? parts.join('\n//\n') : parts[0];
+}
+
+export function extractCard(card) {
+  if (!card.oracle_id) return null;
+  return {
+    oracle_id: card.oracle_id,
+    name: card.name,
+    mana_cost: faceJoin(card, 'mana_cost'),
+    cmc: card.cmc ?? null,
+    type_line: faceJoin(card, 'type_line'),
+    oracle_text: faceJoin(card, 'oracle_text'),
+    colors: JSON.stringify(card.colors ?? []),
+    color_identity: JSON.stringify(card.color_identity ?? []),
+    keywords: JSON.stringify(card.keywords ?? []),
+    produced_mana: JSON.stringify(card.produced_mana ?? []),
+    power: faceJoin(card, 'power'),
+    toughness: faceJoin(card, 'toughness'),
+    legalities: JSON.stringify(card.legalities ?? {}),
+    edhrec_rank: card.edhrec_rank ?? null,
+    game_changer: card.game_changer ? 1 : 0,
+    raw: JSON.stringify(card),
+  };
+}
+
+export function extractPrinting(card) {
+  if (!card.oracle_id) return null;
+  return {
+    scryfall_id: card.id,
+    oracle_id: card.oracle_id,
+    lang: card.lang,
+    set_code: card.set ?? null,
+    collector_number: card.collector_number ?? null,
+    rarity: card.rarity ?? null,
+    printed_name: card.printed_name ?? null,
+    printed_text: card.printed_text ?? null,
+    printed_type_line: card.printed_type_line ?? null,
+  };
+}
