@@ -1,0 +1,15 @@
+{
+  "name": "mtg-mcp",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "bin": { "mtg-mcp": "./server.js" },
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "test": "node --test test/*.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.30.0",
+    "zod": "^4.4.3"
+  }
+}
