@@ -130,10 +130,10 @@ export function extractPrinting(card) {
   };
 }
 
-// The shape Claude reads. Print-level fields are stripped — a 150-card
-// collection lands around 15k tokens like this, small enough to read whole.
+// The shape Claude reads. Legalities dropped — ~20 keys per card, never
+// needed for analysis or synergy work. Power/toughness added for creatures.
 function toCard(row, tags = []) {
-  return {
+  const card = {
     name: row.name,
     mana_cost: row.mana_cost,
     cmc: row.cmc,
@@ -141,10 +141,11 @@ function toCard(row, tags = []) {
     oracle_text: row.oracle_text,
     color_identity: JSON.parse(row.color_identity ?? '[]'),
     keywords: JSON.parse(row.keywords ?? '[]'),
-    legalities: JSON.parse(row.legalities ?? '{}'),
-    game_changer: row.game_changer === 1,
     tags,
   };
+  if (row.power != null)     card.power = row.power;
+  if (row.toughness != null) card.toughness = row.toughness;
+  return card;
 }
 
 function tagsFor(db, oracleIds) {
